@@ -1,6 +1,7 @@
 *.sw[a-z]
 *.py[oc]
 *.log
+*~
 
 *.egg-info/
 *.tox/

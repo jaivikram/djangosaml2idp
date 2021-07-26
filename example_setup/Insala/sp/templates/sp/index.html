@@ -5,11 +5,11 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Docebo</title>
+  <title>Insala</title>
 </head>
 
 <body>
-    <p>-- @ Docebo --</p>
+    <p>-- @ Insala --</p>
     {% if request.user.is_authenticated %}
         <p>LOGGED IN -  <a href={{ logout_url }}>LOGOUT</a></p>
         <ul>
@@ -17,8 +17,6 @@
             <li>{{k}}: {{v}}</li>
         {% endfor %}
         </ul>
-	<a target="_blank" href="http://192.168.56.101:7000/idp/sso/init/?sp=http%3A%2F%2F192.168.56.101%3A8001%2Fsaml2%2Fmetadata%2F&RelayState=%2F">Insala</a>
-	<a target="_blank" href="http://192.168.56.101:7000/idp/sso/init/?sp=http%3A%2F%2F192.168.56.101%3A8002%2Fsaml2%2Fmetadata%2F&RelayState=%2F">MyInterviewPractice</a>
     {% else %}
         <p>LOGGED OUT - <a href={{ login_url }}>LOGIN</a></p>
     {% endif %}

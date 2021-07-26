@@ -1,0 +1,18 @@
+<head>
+  {% if is_authenticated %}
+    <script>
+      window.onload = function(e){
+          console.log("redirecting...");
+          setTimeout(function(){ window.location.href = "{{url}}"; }, 3000);
+      }
+    </script>
+    {% endif %}
+</head>
+<body>
+  Hello {{user.first_name}}
+  Redirecting to learning site...
+  (if it does not redirect click <a href="{{url}}">Link</a>)
+
+  <br/><br/>
+  <a href="/logout/">Logout</a>
+</body>

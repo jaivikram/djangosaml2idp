@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+X_FRAME_OPTIONS = 'ALLOW-FROM http://192.168.56.101:8000'
 
 ROOT_URLCONF = 'idp.urls'
 
@@ -127,8 +128,10 @@ STATICFILES_DIRS = (
 
 
 # pySAML2 IDP
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_COOKIE_AGE = 60 * 60  # an hour
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+#SESSION_COOKIE_AGE = 60 * 60  # an hour
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_NAME = "idpsessionid"
 
 LOGGING = {
     'version': 1,
@@ -174,7 +177,7 @@ LOGOUT_REDIRECT_URL = '/'
 SAML_IDP_CONFIG = {
     'debug': DEBUG,
     'xmlsec_binary': get_xmlsec_binary(['/opt/local/bin', '/usr/bin/xmlsec1']),
-    'entityid': 'http://localhost:9000/idp/metadata/',
+    'entityid': 'http://192.168.56.101:7000/idp/metadata/',
     'description': 'Example IdP setup',
 
     'service': {
@@ -182,12 +185,12 @@ SAML_IDP_CONFIG = {
             'name': 'Django localhost IdP',
             'endpoints': {
                 'single_sign_on_service': [
-                    ('http://localhost:9000/idp/sso/post/', saml2.BINDING_HTTP_POST),
-                    ('http://localhost:9000/idp/sso/redirect/', saml2.BINDING_HTTP_REDIRECT),
+                    ('http://192.168.56.101:7000/idp/sso/post/', saml2.BINDING_HTTP_POST),
+                    ('http://192.168.56.101:7000/idp/sso/redirect/', saml2.BINDING_HTTP_REDIRECT),
                 ],
                 "single_logout_service": [
-                    ("http://localhost:9000/idp/slo/post/", saml2.BINDING_HTTP_POST),
-                    ("http://localhost:9000/idp/slo/redirect/", saml2.BINDING_HTTP_REDIRECT)
+                    ("http://192.168.56.101:7000/idp/slo/post/", saml2.BINDING_HTTP_POST),
+                    ("http://192.168.56.101:7000/idp/slo/redirect/", saml2.BINDING_HTTP_REDIRECT)
                 ],
             },
             'name_id_format': [NAMEID_FORMAT_EMAILADDRESS, NAMEID_FORMAT_UNSPECIFIED],

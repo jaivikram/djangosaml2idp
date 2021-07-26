@@ -12,14 +12,19 @@
     <p>-- @ Identity Provider --</p>
     {% if request.user.is_authenticated %}
         <p>LOGGED IN - <a href={{ logout_url }}>LOGOUT</a></p>
-	Hello {{ request.user.first_name }} !!
+        <ul>
+        {% for k, v in user_attrs %}
+            <li>{{k}}: {{v}}</li>
+        {% endfor %}
+        </ul>
 
         {% for sp_id in known_sp_ids %}
     <p>
       <a target="_blank"
 	 href="{% url 'djangosaml2idp:saml_idp_init' %}?sp={{sp_id.entity_id|urlencode:""}}&RelayState=%2F">
-	Perform IdP-initiated login to {{sp_id}}
+	Perform IdP-initiated login to Docebo
       </a>
+      <br/>({{sp_id}})
     </p>
         {% endfor %}
     {% else %}

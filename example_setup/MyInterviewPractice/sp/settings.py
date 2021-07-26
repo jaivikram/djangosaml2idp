@@ -145,18 +145,18 @@ LOGOUT_REDIRECT_URL = '/'
 SAML_CONFIG = {
     'debug': DEBUG,
     'xmlsec_binary': get_xmlsec_binary(['/opt/local/bin', '/usr/bin/xmlsec1']),
-    'entityid': 'http://192.168.56.101:8000/saml2/metadata/',
+    'entityid': 'http://192.168.56.101:8002/saml2/metadata/',
 
     'service': {
         'sp': {
-            'name': 'http://192.168.56.101:8000/saml2/metadata/',
+            'name': 'http://192.168.56.101:8002/saml2/metadata/',
             'endpoints': {
                 'assertion_consumer_service': [
-                    ('http://192.168.56.101:8000/saml2/acs/', saml2.BINDING_HTTP_POST),
+                    ('http://192.168.56.101:8002/saml2/acs/', saml2.BINDING_HTTP_POST),
                 ],
                 'single_logout_service': [
-                    ('http://192.168.56.101:8000/saml2/ls/', saml2.BINDING_HTTP_REDIRECT),
-                    ('http://192.168.56.101:8000/saml2/ls/post/', saml2.BINDING_HTTP_POST),
+                    ('http://192.168.56.101:8002/saml2/ls/', saml2.BINDING_HTTP_REDIRECT),
+                    ('http://192.168.56.101:8002/saml2/ls/post/', saml2.BINDING_HTTP_POST),
                 ],
             },
             'name_id_format': [NAMEID_FORMAT_EMAILADDRESS],
