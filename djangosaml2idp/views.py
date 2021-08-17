@@ -302,7 +302,7 @@ class SSOInitView(LoginRequiredMixin, IdPHandlerViewMixin, View):
 
         # Adding a few things that would have been added if this were SP Initiated
         passed_data['destination'] = destination
-        # passed_data['in_response_to'] = "IdP_Initiated_Login"
+        passed_data['in_response_to'] = None
 
         # Construct SamlResponse messages
         authn_resp = build_authn_response(request.user, get_authn(), passed_data, service_provider)
